@@ -26,7 +26,13 @@ $exp->expect($timeout,
                                         my $exp = shift;
                                         $exp->send("bar\n");
                                         exp_continue;
-                                      }
+                        },
+                        qr/echo: 'bar'/ => sub {
+                                        # we got the expected response from sending "bar\n" !
+                                        my $exp = shift;
+                                        ok(1,"got our expected echo");
+                                        exp_continue;
+                        },
                     ],);
 
 $exp->soft_close;
