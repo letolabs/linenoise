@@ -7,7 +7,7 @@ use Test::Most;
 
 plan;
 
-my $command = "../linenoise_example";
+my $command = "linenoise_example";
 my @params  = ();
 
 my $exp = Expect->spawn($command, @params) or die "Cannot spawn $command: $!\n";
