@@ -12,6 +12,8 @@ my @params  = ();
 
 my $exp = Expect->spawn($command, @params) or die "Cannot spawn $command: $!\n";
 
+$exp->debug( $ENV{LINENOISE_TEST_DEBUG} || 0 );
+
 # we now give various strings to the program and verify the correct interactive response
 
 my $timeout = 5; # seconds
@@ -26,5 +28,7 @@ $exp->expect($timeout,
                                         exp_continue;
                                       }
                     ],);
+
+$exp->soft_close;
 
 done_testing;
